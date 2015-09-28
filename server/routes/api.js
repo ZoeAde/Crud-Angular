@@ -38,7 +38,12 @@ router.get('/tatum/:id', function(req, res, next){
 
 //put single tatum
 router.put('/tatum/:id', function(req, res, next){
-  Tatum.findByIdAndUpdateQ(req.params.id)
+  var update = {
+    movie: req.body.movie,
+    year: req.body.year,
+    chickflick: req.body.chickflick
+  };
+  Tatum.findByIdAndUpdateQ(req.params.id, update)
     .then(function(results){
       res.json(results);
     }).catch(function(results){
@@ -48,7 +53,7 @@ router.put('/tatum/:id', function(req, res, next){
 
 //delete single tatum
 router.delete('/tatum/:id', function(req, res, next){
-  Tatum.findByIdAndRemoveQ()
+  Tatum.findByIdAndRemoveQ(req.params.id)
     .then(function(results){
       res.json(results);
     }).catch(function(results){
