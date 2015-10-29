@@ -12,20 +12,52 @@
     </div> -->
 
 
-    <form role="form">
+    <form role="form" ng-submit='postMovie()'>
       <div class="form-group">
-        <label for="email">Email address:</label>
-        <input type="email" class="form-control" id="email">
+        <label>Movie Name</label>
+        <input ng-model="movieName" type="text" class="form-control" id="movie">
       </div>
       <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd">
+        <label>Year</label>
+        <input ng-model="year" type="text" class="form-control" id="year">
       </div>
       <div class="checkbox">
-        <label><input type="checkbox"> Remember me</label>
+        <label><input ng-model="chickflick" type="checkbox">Chick-flick</label>
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
+
+<!-- show all our movies -->
+  <div id="object" ng-repeat="movie in movies">
+    <h5><strong>{{ movie.movie }}</strong></h5>
+    <ul>
+      <li>year: {{ movie.year }}</li>
+      <li>Chickflick: {{ movie.chickflick }}</li>
+    </ul>
+    <button ng-click="deleteMovie(movie._id)" class="btn btn-danger btn-xs">DELETE</button>
+    <button ng-click="getMovie(movie._id)" class="btn btn-warning btn-xs">EDIT</button>
+    <br>
+  </div>
+
+<div ng-show="edit">
+
+  <!-- hidden edit form -->
+      <form role="form" ng-submit='editMovie(movieEdit._id)'>
+      <div class="form-group">
+        <label>Movie Name</label>
+        <input ng-model="movieEdit.movieName" type="text" class="form-control" id="movie">
+      </div>
+      <div class="form-group">
+        <label>Year</label>
+        <input ng-model="movieEdit.year" type="text" class="form-control" id="year">
+      </div>
+      <div class="checkbox">
+        <label><input ng-model="movieEdit.chickflick" type="checkbox">Chick-flick</label>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+</div>
 
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

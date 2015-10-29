@@ -31,6 +31,7 @@ router.get('/tatum/:id', function(req, res, next){
   Tatum.findByIdQ(req.params.id)
     .then(function(results){
       res.json(results);
+      console.log(results);
     }).catch(function(results){
       res.json({'message': results});
     }).done();
@@ -43,6 +44,7 @@ router.put('/tatum/:id', function(req, res, next){
     year: req.body.year,
     chickflick: req.body.chickflick
   };
+
   Tatum.findByIdAndUpdateQ(req.params.id, update, {new:true})
     .then(function(results){
       res.json(results);
